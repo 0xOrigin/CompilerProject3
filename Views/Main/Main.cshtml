@@ -1,0 +1,136 @@
+﻿@{
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Compiler Project #3</title>
+
+        <link href="css/jquery-linedtextarea.css" type="text/css" rel="stylesheet" />
+        <link href="css/textarea.css" type="text/css" rel="stylesheet" />
+        <link href="css/dropdown.css" rel="stylesheet" />
+        <link href="css/style.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="buttons">
+            <input type="file" accept=".c3, .txt" id="browseButton" value="Browse">
+            <input type="button" id="commentButton" value="Comment" onpointermove="highlightSelectedLine()" onmouseup="highlightSelectedLine()">
+            <input type="button" id="uncommentButton" value="Uncomment" onpointermove="highlightSelectedLine()" onmouseup="highlightSelectedLine()">
+            <span class="jt">
+                <label for="jumpto" class="jumpto-label">&lt;&gt; Jump to </label>
+                <select name="jumpto" id="selectbox" onchange="performJump()">
+                    <option value="" selected disabled>Select item</option>
+                    <option value="ahmed">ahmed_______:Name</option>
+                    <option value="ezzat">ezzat_______:Name</option>
+                </select>
+            </span>
+            <input type="button" value="Scan" id="scannerButton">
+            <input type="button" value="Parse" id="parserButton">
+        </div>
+        <div class="editor">
+            <textarea id="lined" placeholder="Write your code here......." cols="200" onkeyup="highlightSelectedLine()" onclick="highlightSelectedLine()"></textarea>
+        </div>
+    </body>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-linedtextarea.js"></script>
+    <script src="js/textarea.js"></script>
+    <script src="js/comment.js"></script>
+    <script src="js/uncomment.js"></script>
+    <script src="js/jumpto.js"></script>
+    <script src="js/AutoSuggest.js"></script>
+    <script type="text/javascript">
+
+        const instance = new AutoSuggest({
+            onChange: function (suggestion) {
+                const change = suggestion.insertHtml || suggestion.insertText;
+            },
+            suggestions: [
+                {
+                    trigger: '@@',
+                    values: [
+                        {
+                            value: 'Type Identifier',
+                            insertText: '@@ Type Identifier {}',
+                            focusText: [-13, -3],
+                        },
+                        {
+                            value: 'Type Identifier Infer',
+                            insertText: '@@ Type Identifier Infer {}',
+                            focusText: [-19, -9],
+                        }
+                    ]
+                }, {
+                    trigger: '^',
+                    values: [
+                        {
+                            value: 'Type Identifier',
+                            insertText: '^ Type Identifier {}',
+                            focusText: [-13, -3],
+                        },
+                        {
+                            value: 'Type Identifier Infer',
+                            insertText: '^ Type Identifier Infer {}',
+                            focusText: [-19, -9],
+                        }
+                    ]
+                }, {
+                    trigger: 're',
+                    values: [
+                        {   value: 'Require fileName',
+                            insertText: 'Require(fileName.c3);',
+                            focusText: [-13, -2],
+                        },
+                    ]
+                }, {
+                    trigger: 'i',
+                    values: [
+                        {
+                            value: 'If statement',
+                            insertText: 'if(condition){}',
+                            focusText: [-12, -3],
+                        },
+                    ]
+                }, {
+                    trigger: 'e',
+                    values: [
+                        {
+                            value: 'Else statement',
+                            insertText: 'else {}',
+                            focusText: [-1, -1],
+                        },
+                    ]
+                },
+
+                ['Type', 'Infer', 'If', 'Else', 'Ipok', 'Sipok', 'Ipokf', 'Sipokf', 'Craf', 'Sequence', 'ValueLess', 'Rational',
+                'Endthis', 'However', 'When', 'Respondwith', 'Srap', 'Scan', 'Conditionof', 'Require',
+                '[0-9]', '&&', '||', '==', '!=', '<=', '>=', '{}', '[]'],
+
+                function (keyword, callback) {
+                    keyword = keyword.toLowerCase();
+
+                    var results = [];
+                    var dataset = this.value || this.textContent;
+                    dataset = dataset.toLowerCase().split(/[^a-zA-Z0-9_]+/);
+                    dataset.forEach(function (word) {
+                        if (
+                            word.length >= 4 &&
+                            !word.indexOf(keyword) &&
+                            word !== keyword &&
+                            results.indexOf(word) === -1
+                        ) {
+                            results.push(word);
+                        }
+                    });
+
+                    setTimeout(function () {
+                        callback(results);
+                    }, 1000);
+                }
+            ]
+        }, $('#lined'));
+    </script>
+</html>

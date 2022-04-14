@@ -1,0 +1,81 @@
+body {
+    background-color: #434040;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(0, 0, 0));
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#commentButton, #uncommentButton, #scannerButton, #parserButton , #browseButton {
+    padding: 12px 18px;
+    margin: 10px;
+    font-size: 15px;
+}
+
+#browseButton {
+
+    margin-right: 30px;
+}
+
+input[type=button], input[type=file], select {
+
+    background-color: white; 
+    color: black; 
+    border: 2px solid #000000;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+
+input[type=button]:hover , select:hover{
+  background-color: #000000;
+  color: white;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.editor {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    align-items: stretch;
+    z-index: 0 !important;
+} 
+
+.jumpto-label {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding: 3px;
+    color: white;
+    margin-bottom: 0px;
+}
+
+.jt {
+
+    margin: 0px 10% 0px 1%;
+}
+
+select {
+    font-size: 18px;
+}
+
+#scannerButton, #parserButton {
+
+    margin-left: 20px;
+    padding: 10px 30px;
+}

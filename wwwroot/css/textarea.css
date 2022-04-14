@@ -1,0 +1,67 @@
+:root {
+
+    --fontSize: 20px;
+}
+
+.linedtextarea textarea, .linedwrap .lines .codelines .lineno{
+
+    font-size: var(--fontSize);
+    background-color: rgb(79, 79, 79);
+    
+}
+
+.codelines {
+    background-color: rgb(79, 79, 79);
+}
+
+
+.linedwrap {
+	padding: 0px;
+    margin: auto;
+    border: 0px;
+    width: 90% !important;
+}
+
+.linedtextarea .codelines {
+
+    padding: 5px;
+    
+}
+
+.linedtextarea {
+
+    width: inherit !important;
+}
+
+.linedwrap .lines {
+
+    padding-bottom: 2px;
+    width: 70px !important;
+	margin-right: 1px;
+    overflow: clip;
+    border: 1px;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px black;
+    animation: shadani 6s infinite;
+}
+
+.linedwrap .codelines .lineselect {
+	color: rgb(221, 221, 221);
+    background-color: rgb(0, 0, 0) !important;
+}
+
+.linedwrap .linedtextarea textarea {
+
+    width: inherit !important;
+    height: 400px;
+    padding: 5px 5px 3px 5px;
+    color: aliceblue;
+    border: 1px;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px black;
+    animation: shadani 6s infinite;
+}
+
+@keyframes shadani {
+    50% {box-shadow: 10px 20px 30px black;}
+}
