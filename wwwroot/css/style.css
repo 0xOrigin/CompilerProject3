@@ -16,10 +16,9 @@ body {
     margin-right: 30px;
 }
 
-input[type=button], input[type=file], select {
-
-    background-color: white; 
-    color: black; 
+input[type=button], #scannerButton, #parserButton, input[type=file], select {
+    background-color: white;
+    color: black;
     border: 2px solid #000000;
     border-radius: 20px;
     text-align: center;
@@ -30,10 +29,10 @@ input[type=button], input[type=file], select {
 }
 
 
-input[type=button]:hover , select:hover{
-  background-color: #000000;
-  color: white;
-}
+    input[type=button]:hover, #scannerButton:hover, #parserButton:hover, select:hover {
+        background-color: #000000 !important;
+        color: white !important;
+    }
 
 .buttons {
     display: flex;
@@ -47,14 +46,20 @@ input[type=button]:hover , select:hover{
 }
 
 .editor {
-    display: flex;
+    display: inline-flex !important;
     justify-content: space-between;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: flex-end;
     align-items: stretch;
     z-index: 0 !important;
-} 
+}
+
+.autosuggest-dropdown {
+    /* position: relative !important;*/
+    float: left;
+    top: 0px;
+}
 
 .jumpto-label {
     font-size: 18px;

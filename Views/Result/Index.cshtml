@@ -1,0 +1,165 @@
+﻿@using static CompilerProject3.Models.Keyword
+@model CompilerProject3.ViewModels.CompilerResults
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <style>
+        body {
+            background-color: lightgray;
+        }
+
+        h1 {
+            background-color: black;
+            color: floralwhite;
+            border-radius: 6px;
+            padding: 10px 20px;
+            margin: 15px 5px;
+        }
+
+        h3 {
+            background-color: black;
+            color: floralwhite;
+            border-radius: 6px;
+            padding: 10px 0px;
+            margin: 15px 5px;
+        }
+
+        hr {
+            height: 2px;
+            border-width: 0;
+            color: gray;
+            background-color: gray;
+            margin: 30px 0px;
+        }
+
+        .no-results {
+            text-align: center;
+            font-size: 35px;
+            font-family: 'arial';
+            background-color: black;
+            color: floralwhite;
+            border-radius: 6px;
+            padding: 35px 20px;
+            margin: 15px 5px;
+        }
+
+        .result {
+            line-height: 23px;
+            padding-left: 20px;
+        }
+
+        .lables {
+            margin: 0px 15px;
+            padding: 2px;
+            font-size: 16px;
+            font-family: 'arial';
+        }
+
+        .values {
+            margin: 0px 15px;
+            padding: 2px;
+            font-size: 16px;
+            font-family: 'arial';
+        }
+
+        .matched {
+            background-color: aquamarine;
+        }
+
+        .not-matched {
+            background-color: #ff4949;
+        }
+    </style>
+</head>
+<body>
+
+@if (Model.ScannerResult.GetResultsList().Count != 0)
+{
+    <h1>Scanner Result</h1>
+
+    int NumOfErrors = 0;
+
+    foreach (List<string> list in Model.ScannerResult.GetResultsList())
+    {
+        if (list[4] == Matched)
+        {
+            <div class="result">
+                <span class="lables">Source of code:</span>
+                <span class="values matched">@list[0]</span> 
+                <span class="lables">Line number:</span>
+                <span class="values matched">@list[1]</span>
+                <span class="lables">Token text:</span>
+                <span class="values matched">@list[2].Replace("\n", "\\n").Replace("\t", "\\t")</span>
+                <span class="lables">Token type:</span>
+                <span class="values matched">@list[3]</span>
+            </div>
+        } else {
+
+            NumOfErrors++;
+            <div class="result">
+                <span class="lables">Source of code:</span>
+                <span class="values not-matched">@list[0]</span> 
+                <span class="lables">Line number:</span>
+                <span class="values not-matched">@list[1]</span>
+                <span class="lables">Error in Token text:</span>
+                <span class="values not-matched">@list[2].Replace("\n", "\\n").Replace("\t", "\\t")</span>
+            </div>
+        }
+    }
+    <h3>
+        <span class="lables">Total number of errors:</span>
+        <span class="lables">@NumOfErrors</span>.
+    </h3>
+}
+else
+{
+    <div class="no-results">
+        No results found
+    </div>
+}
+
+
+@if (Model.ParserResult.GetResultsList().Count != 0)
+{
+    <hr>
+
+    <h1>Parser Result</h1>
+
+    int NumOfErrors = 0;
+
+    foreach (List<string> list in Model.ParserResult.GetResultsList())
+    {
+        if (list[2] == Matched)
+        {
+            <div class="result">
+                <span class="lables">Line number:</span>
+                <span class="values matched">@list[0]</span>
+                <span class="values matched">@list[1]</span>
+                <span class="lables">Rule used:</span>
+                <span class="values matched">@list[2]</span>
+            </div>
+        } else {
+
+            NumOfErrors++;
+            <div class="result">
+                <span class="lables">Line number:</span>
+                <span class="values not-matched">@list[0]</span>
+                <span class="values not-matched">@list[1]</span>
+                <span class="lables">Rule used:</span>
+                <span class="values not-matched">@list[2]</span>
+            </div>
+        }
+    }
+    <h3>
+        <span class="lables">Total number of errors:</span>
+        <span class="lables">@NumOfErrors</span>.
+    </h3>
+}
+
+</body>
+</html>

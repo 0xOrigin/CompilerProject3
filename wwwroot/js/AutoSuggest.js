@@ -382,6 +382,7 @@ var SuggestionDropdown = function () {
         this.dropdownContent.className = 'dropdown-menu dropdown-menu-left';
 
         this.dropdown = document.createElement('div');
+        this.dropdown.setAttribute('id', 'autocomplete-menu');
         this.dropdown.className = 'autosuggest-dropdown dropdown open';
         this.dropdown.style.position = 'absolute';
 

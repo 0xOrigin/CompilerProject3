@@ -12,7 +12,6 @@ namespace CompilerProject3.Controllers
     public class MainController : Controller
     {
         private readonly ILogger<MainController> _logger;
-
         public MainController(ILogger<MainController> logger)
         {
             _logger = logger;
@@ -21,6 +20,23 @@ namespace CompilerProject3.Controllers
         public IActionResult Main()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Scan(string sourceOfCode, string code)
+        {
+            ScannerResult.GetInstance().ClearResults();
+
+            return RedirectToAction("Scan", "Result", new { sourceOfCode = sourceOfCode, code = code });
+        }
+
+        [HttpPost]
+        public IActionResult Parse(string sourceOfCode, string code)
+        {
+            ScannerResult.GetInstance().ClearResults();
+            ParserResult.GetInstance().ClearResults();
+
+            return RedirectToAction("Parse", "Result", new { sourceOfCode = sourceOfCode, code = code });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

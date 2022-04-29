@@ -1,0 +1,43 @@
+﻿using System;
+using System.Net;
+using Microsoft.AspNetCore.Http;
+
+namespace CompilerProject3.Controllers.ScannerUtility
+{
+    public static class Utility
+    {
+        public static int GetLength(string code)
+        {
+            int counter = 0;
+            foreach (var c in code)
+            {
+                counter++;
+            }
+            return counter;
+        }
+
+        public static string GetSlice(string code, int startIndex, int endIndex)
+        {
+            int lengthOfCode = GetLength(code); 
+            string result = "";
+
+            if (ValidateIndex(endIndex, lengthOfCode))
+            {
+                for (int i = startIndex; i < endIndex; i++)
+                {
+                    result += code[i];
+                }
+            }
+
+            return result;
+        }
+
+        private static bool ValidateIndex(int endIndex, int lengthOfCode)
+        {
+            if (endIndex <= lengthOfCode) return true;
+            Console.WriteLine("Empty string.");
+            return false;
+        }
+
+    }
+}
