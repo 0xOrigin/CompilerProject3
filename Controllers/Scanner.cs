@@ -42,21 +42,21 @@ namespace CompilerProject3.Controllers
 
             while(i < lengthOfCode)
             {
-                MatchLineDelimiter();
-                MatchStartSymbol();
-                
+                int trackChange = i;
 
                 // Add calls here:
+                MatchStartSymbol();
                 MatchSingleLineComment();
                 MatchCommentStart();
-                MatchTokenDelimiter();
                 
 
                 // ----------------------
                 MatchEndSymbol();
+                MatchTokenDelimiter();
                 MatchLineDelimiter();
 
-                Increment(1);
+                if(trackChange == i)
+                    Increment(1);
             }
         }
 

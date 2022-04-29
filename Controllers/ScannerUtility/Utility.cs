@@ -28,14 +28,13 @@ namespace CompilerProject3.Controllers.ScannerUtility
                     result += code[i];
                 }
             }
-
             return result;
         }
 
         private static bool ValidateIndex(int endIndex, int lengthOfCode)
         {
             if (endIndex <= lengthOfCode) return true;
-            Console.WriteLine("Empty string.");
+            // Console.WriteLine("Empty string.");
             return false;
         }
 
