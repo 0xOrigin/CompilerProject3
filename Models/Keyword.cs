@@ -39,8 +39,12 @@ namespace CompilerProject3.Models
         public static readonly string LineDelimiter = "Line delimiter";
         public static readonly string TokenDelimiter = "Token delimiter";
         public static readonly string Constant = "Constant";
+        public static readonly string Identifier = "Identifier";
         public static readonly string Matched = "Matched";
         public static readonly string NotMatched = "Not Matched";
+
+        private static readonly int MaxLengthOfIdentifier = 12;
+        private static readonly int MaxLengthOfConstant = 12;
 
 
         private static readonly Dictionary<string, int> MaxLength = new Dictionary<string, int>();
@@ -117,6 +121,12 @@ namespace CompilerProject3.Models
                         MaxLength[record.Value] = LengthOfKeyword(record.Key);
                     }
                 }
+            }
+
+            if (!MaxLength.ContainsKey(Identifier) && !MaxLength.ContainsKey(Constant))
+            {
+                MaxLength.Add(Identifier, MaxLengthOfIdentifier);
+                MaxLength.Add(Constant, MaxLengthOfConstant);
             }
         }
 

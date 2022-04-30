@@ -32,5 +32,7 @@
         
         bool MatchIdentifier(string sourceOfCode, int lineNum, string lexeme);
 
+        bool MatchConstant(string sourceOfCode, int lineNum, string lexeme);
+
     }
 }

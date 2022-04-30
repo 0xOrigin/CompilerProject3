@@ -61,19 +61,115 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // +|-|*|/
         public bool MatchArithmeticOperation(string sourceOfCode, int lineNum, string lexeme)
         {
-            throw new System.NotImplementedException();
+            if (lexeme.Length == 0) return false;
+
+            int state = 1, i = 0;
+            char c;
+            while (state != 2 && state != 4 && state != 6 && state != 8 && state != 0)
+            {
+                c = lexeme[i];
+                switch (state)
+                {
+                    case 1:
+                        if (c == '+') state = 2;
+                        else if (c == '-') state = 4;
+                        else if (c == '*') state = 6;
+                        else if (c == '/') state = 8;
+                        else state = 0;
+                        i++;
+                        break;
+                }
+            }
+
+            if (state != 2 && state != 4 && state != 6 && state != 8) return false;
+            LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            return true;
         }
 
         // &&,||,~
         public bool MatchLogicOperators(string sourceOfCode, int lineNum, string lexeme)
         {
-            throw new System.NotImplementedException();
+            if (lexeme.Length == 0) return false;
+
+            int state = 1, i = 0;
+            char c;
+            while (state != 5 && state != 9 && state != 11 && state != 0)
+            {
+                c = lexeme[i];
+                switch (state)
+                {
+                    case 1:
+                        if (c == '&') state = 3;
+                        else if (c == '|') state = 7;
+                        else if (c == '~') state = 11;
+                        else state = 0;
+                        i++;
+                        break;
+                    case 3:
+                        state = (c == '&' ? 5 : 0);
+                        i++;
+                        break;
+                    case 7:
+                        state = (c == '|' ? 9 : 0);
+                        i++;
+                        break;
+                }
+            }
+
+            if (state != 5 && state != 9 && state != 11) return false;
+            if (state == 11)
+                lexeme = lexeme.Substring(0, 1);
+            LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            return true;
         }
 
         // ==|<|>|!=|<=|>=
         public bool MatchRelationalOperators(string sourceOfCode, int lineNum, string lexeme)
         {
-            throw new System.NotImplementedException();
+            if (lexeme.Length == 0) return false;
+
+            int state = 1, i = 0;
+            char c;
+            while (state != 5 && state != 9 && state != 13 && state != 17 && state != 19 && state != 0)
+            {
+                c = lexeme[i];
+                switch (state)
+                {
+                    case 1:
+                        if (c == '=') state = 3;
+                        else if (c == '!') state = 7;
+                        else if (c == '>') state = 11;
+                        else if (c == '<') state = 15;
+                        else state = 0;
+                        i++;
+                        break;
+                    case 3:
+                        state = (c == '=' ? 5 : 0);
+                        i++;
+                        break;
+                    case 7:
+                        state = (c == '=' ? 9 : 0);
+                        i++;
+                        break;
+                    case 11:
+                        state = (c == '=' ? 13 : 19);
+                        i++;
+                        break;
+                    case 15:
+                        state = (c == '=' ? 17 : 19);
+                        i++;
+                        break;
+                }
+            }
+
+            if (state != 5 && state != 9 && state != 13 && state != 17 && state != 19) return false;
+            if (state == 19)
+                lexeme = lexeme.Substring(0, 1);
+            LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            return true;
         }
 
         // =
@@ -243,6 +339,12 @@ namespace CompilerProject3.Controllers.ScannerUtility
 
         // [a-zA-Z_]+[a-zA-Z_0-9]*
         public bool MatchIdentifier(string sourceOfCode, int lineNum, string lexeme)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        // [0-9]+
+        public bool MatchConstant(string sourceOfCode, int lineNum, string lexeme)
         {
             throw new System.NotImplementedException();
         }
