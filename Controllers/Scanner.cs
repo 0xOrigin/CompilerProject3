@@ -76,7 +76,7 @@ namespace CompilerProject3.Controllers
                 MatchRelationalOperators();
                 //MatchAssignmentOperator();
                 //MatchAccessOperator();
-                //MatchBraces();
+                MatchBraces();
                 //MatchQuotationMark();
 
                 //MatchIdentifier();
