@@ -60,10 +60,10 @@ namespace CompilerProject3.Controllers
                 //MatchBoolean();
 
                 // ReservedKeywords
-                //MatchClass();
-                //MatchInheritance();
+                MatchClass();
+                MatchInheritance();
                 MatchCondition();
-                //MatchBreak();
+                MatchBreak();
                 MatchLoop();
                 //MatchReturn();
                 //MatchStruct();
