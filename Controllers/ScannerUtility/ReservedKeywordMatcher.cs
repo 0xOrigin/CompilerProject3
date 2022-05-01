@@ -10,14 +10,83 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // Type
         public bool MatchClass(string sourceOfCode, int lineNum, string lexeme)
         {
+            if (lexeme.Length == 0) return false;
+
+            int state = 1, i = 0;
+            char c;
+            while (state != 8 && state != 0)
+            {
+                c = lexeme[i];
+                switch (state)
+                {
+                    case 1:
+                        state = (c == 'T' ? 2 : 0);
+                        i++;
+                        break;
+                    case 2:
+                        state = (c == 'y' ? 4 : 0);
+                        i++;
+                        break;
+                    case 4:
+                        state = (c == 'p' ? 6 : 0);
+                        i++;
+                        break;
+                    case 6:
+                        state = (c == 'e' ? 8 : 0);
+                        i++;
+                        break;
+                }
+            }
             
-            throw new System.NotImplementedException();
+            if (state != 8) return false;
+            if (state == 8)
+                lexeme = lexeme.Substring(0, 4);
+            LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            return true;
         }
 
         // Infer
         public bool MatchInheritance(string sourceOfCode, int lineNum, string lexeme)
         {
-            throw new System.NotImplementedException();
+            if (lexeme.Length == 0) return false;
+
+            int state = 1, i = 0;
+            char c;
+            while (state != 10 && state != 0)
+            {
+                c = lexeme[i];
+                switch (state)
+                {
+                    case 1:
+                        state = (c == 'I' ? 2 : 0);
+                        i++;
+                        break;
+                    case 2:
+                        state = (c == 'n' ? 4 : 0);
+                        i++;
+                        break;
+                    case 4:
+                        state = (c == 'f' ? 6 : 0);
+                        i++;
+                        break;
+                    case 6:
+                        state = (c == 'e' ? 8 : 0);
+                        i++;
+                        break;
+                    case 8:
+                        state = (c == 'r' ? 10 : 0);
+                        i++;
+                        break;
+                }
+            }
+            
+            if (state != 10) return false;
+            if (state == 10)
+                lexeme = lexeme.Substring(0, 5);
+            LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            return true;
         }
 
         // If|Else
@@ -66,7 +135,52 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // Endthis
         public bool MatchBreak(string sourceOfCode, int lineNum, string lexeme)
         {
-            throw new System.NotImplementedException();
+             if (lexeme.Length == 0) return false;
+
+            int state = 1, i = 0;
+            char c;
+            while (state != 14 && state != 0)
+            {
+                c = lexeme[i];
+                switch (state)
+                {
+                    case 1:
+                        state = (c == 'E' ? 2 : 0);
+                        i++;
+                        break;
+                    case 2:
+                        state = (c == 'n' ? 4 : 0);
+                        i++;
+                        break;
+                    case 4:
+                        state = (c == 'd' ? 6 : 0);
+                        i++;
+                        break;
+                    case 6:
+                        state = (c == 't' ? 8 : 0);
+                        i++;
+                        break;
+                    case 8:
+                        state = (c == 'h' ? 10 : 0);
+                        i++;
+                        break;
+                    case 10:
+                        state = (c == 'i' ? 12 : 0);
+                        i++;
+                        break;
+                    case 12:
+                        state = (c == 's' ? 14 : 0);
+                        i++;
+                        break;
+                }
+            }
+            
+            if (state != 14) return false;
+            if (state == 14)
+                lexeme = lexeme.Substring(0, 7);
+            LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            return true;
         }
 
         // However|When
