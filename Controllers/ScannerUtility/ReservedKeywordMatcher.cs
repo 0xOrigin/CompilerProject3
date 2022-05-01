@@ -10,7 +10,6 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // Type
         public bool MatchClass(string sourceOfCode, int lineNum, string lexeme)
         {
-            
             if (lexeme.Length == 0) return false;
 
             int state = 1, i = 0;
