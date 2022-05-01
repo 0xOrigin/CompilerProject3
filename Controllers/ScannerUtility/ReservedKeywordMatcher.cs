@@ -164,7 +164,6 @@ namespace CompilerProject3.Controllers.ScannerUtility
                         state = (c == 'o' ? 10 : 0);
                         i++;
                         break;
-
                     case 10:
                         state = (c == 'n' ? 12 : 0);
                         i++;
@@ -196,7 +195,6 @@ namespace CompilerProject3.Controllers.ScannerUtility
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
             result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
             return true;
-
         }
 
         // Srap
