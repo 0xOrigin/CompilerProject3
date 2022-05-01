@@ -71,12 +71,12 @@ namespace CompilerProject3.Controllers
                 //MatchInclusion();
 
                 // Symbols
+                MatchAccessOperator();
                 MatchArithmeticOperation();
                 MatchLogicOperators();
                 MatchRelationalOperators();
                 //MatchAssignmentOperator();
-                //MatchAccessOperator();
-                //MatchBraces();
+                MatchBraces();
                 MatchQuotationMark();
 
                 //MatchIdentifier();
