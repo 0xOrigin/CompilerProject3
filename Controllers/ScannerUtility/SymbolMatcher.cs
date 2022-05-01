@@ -240,7 +240,27 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // "|'
         public bool MatchQuotationMark(string sourceOfCode, int lineNum, string lexeme)
         {
-            throw new System.NotImplementedException();
+            if (lexeme.Length == 0) return false;
+
+            int state = 1, i = 0;
+            char c;
+            while (state != 2 && state != 4 && state != 0)
+            {
+                c = lexeme[i];
+                switch (state)
+                {
+                    case 1:
+                        if (c == '"') state = 2;
+                        else if (c == '\'') state = 4;
+                        else state = 0;
+                        i++;
+                        break;
+                }
+            }
+            if (state != 2 && state != 4) return false;
+            LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            return true;
         }
 
         // ***
