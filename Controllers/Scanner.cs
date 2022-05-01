@@ -95,10 +95,18 @@ namespace CompilerProject3.Controllers
         {
             bool IsTokenDelimiter = false;
             bool IsLineDelimiter = false;
+            bool IsEndOfCode = false;
             int current_i = iterator;
+            int lengthToNearestDelimiter = 0;
 
             while (!IsTokenDelimiter && !IsLineDelimiter)
             {
+                if (iterator + 1 >= lengthOfCode)
+                {
+                    IsEndOfCode = true;
+                    break;
+                }
+
                 IsTokenDelimiter = symbolMatcher.MatchTokenDelimiter(sourceOfCode, lineNumber,
                     GetSlice(code, iterator, iterator + GetMaxLengthOf(TokenDelimiter)));
                 IsLineDelimiter = symbolMatcher.MatchLineDelimiter(sourceOfCode, lineNumber,
@@ -107,7 +115,15 @@ namespace CompilerProject3.Controllers
                 if (!IsTokenDelimiter && !IsLineDelimiter)
                     iterator++;
             }
-            return iterator - current_i;
+
+            lengthToNearestDelimiter = iterator - current_i;
+
+            if (IsEndOfCode)
+            {
+                lengthToNearestDelimiter = lengthOfCode - current_i;
+            }
+
+            return lengthToNearestDelimiter;
         }
 
         private void MatchStartSymbol()
