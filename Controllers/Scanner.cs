@@ -22,7 +22,7 @@ namespace CompilerProject3.Controllers
         public Scanner(string sourceOfCode, string code)
         {
             this.sourceOfCode = sourceOfCode;
-            this.code = code.Substring(0, code.Length-1); // For _ entered before to the end of code to fix ajax request new line deletion
+            this.code = code.Substring(0, code.Length-1).Replace("\r", ""); // For _ entered before to the end of code to fix ajax request new line deletion
             this.lineNumber = 1;
             this.i = 0;
             this.dataTypeMatcher = new DataTypeMatcher();

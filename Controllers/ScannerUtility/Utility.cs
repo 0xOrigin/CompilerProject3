@@ -21,17 +21,20 @@ namespace CompilerProject3.Controllers.ScannerUtility
             int lengthOfCode = GetLength(code); 
             string result = "";
 
-            if (ValidateIndex(endIndex, lengthOfCode))
+            if (!IsValidIndex(endIndex, lengthOfCode))
             {
-                for (int i = startIndex; i < endIndex; i++)
-                {
-                    result += code[i];
-                }
+                endIndex = lengthOfCode;
             }
+
+            for (int i = startIndex; i < endIndex; i++)
+            {
+                result += code[i];
+            }
+            
             return result;
         }
 
-        private static bool ValidateIndex(int endIndex, int lengthOfCode)
+        private static bool IsValidIndex(int endIndex, int lengthOfCode)
         {
             if (endIndex <= lengthOfCode) return true;
             // Console.WriteLine("Empty string.");
