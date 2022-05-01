@@ -202,7 +202,40 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // Srap
         public bool MatchStruct(string sourceOfCode, int lineNum, string lexeme)
         {
-            throw new System.NotImplementedException();
+
+            if (lexeme.Length == 0) return false;
+
+            int state = 1, i = 0;
+            char c;
+            while (state != 8 && state != 0)
+            {
+                c = lexeme[i];
+                switch (state)
+                {
+                    case 1:
+                        state = (c == 'S' ? 2 : 0);
+                        i++;
+                        break;
+                    case 2:
+                        state = (c == 'r' ? 4 : 0);
+                        i++;
+                        break;
+                    case 4:
+                        state = (c == 'a' ? 6 : 0);
+                        i++;
+                        break;
+                    case 6:
+                        state = (c == 'p' ? 8 : 0);
+                        i++;
+                        break;
+
+                }
+            }
+
+            if (state != 8) return false;
+            LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            return true;
         }
 
         // Scan|Conditionof
