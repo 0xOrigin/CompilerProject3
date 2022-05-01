@@ -1,4 +1,4 @@
-﻿using CompilerProject3.Models;
+using CompilerProject3.Models;
 using static CompilerProject3.Models.Keyword;
 
 namespace CompilerProject3.Controllers.ScannerUtility
@@ -164,7 +164,6 @@ namespace CompilerProject3.Controllers.ScannerUtility
                         state = (c == 'o' ? 10 : 0);
                         i++;
                         break;
-
                     case 10:
                         state = (c == 'n' ? 12 : 0);
                         i++;
@@ -196,13 +195,11 @@ namespace CompilerProject3.Controllers.ScannerUtility
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
             result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
             return true;
-
         }
 
         // Srap
         public bool MatchStruct(string sourceOfCode, int lineNum, string lexeme)
         {
-
             if (lexeme.Length == 0) return false;
 
             int state = 1, i = 0;
@@ -228,7 +225,6 @@ namespace CompilerProject3.Controllers.ScannerUtility
                         state = (c == 'p' ? 8 : 0);
                         i++;
                         break;
-
                 }
             }
 
@@ -357,7 +353,6 @@ namespace CompilerProject3.Controllers.ScannerUtility
                         state = (c == 'e' ? 14 : 0);
                         i++;
                         break;
-
                 }
             }
 
