@@ -135,7 +135,68 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // Respondwith
         public bool MatchReturn(string sourceOfCode, int lineNum, string lexeme)
         {
-            throw new System.NotImplementedException();
+            if (lexeme.Length == 0) return false;
+
+            int state = 1, i = 0;
+            char c;
+            while (state != 22 && state != 0)
+            {
+                c = lexeme[i];
+                switch (state)
+                {
+                    case 1:
+                        state = (c == 'R' ? 2 : 0);
+                        i++;
+                        break;
+                    case 2:
+                        state = (c == 'e' ? 4 : 0);
+                        i++;
+                        break;
+                    case 4:
+                        state = (c == 's' ? 6 : 0);
+                        i++;
+                        break;
+                    case 6:
+                        state = (c == 'p' ? 8 : 0);
+                        i++;
+                        break;
+                    case 8:
+                        state = (c == 'o' ? 10 : 0);
+                        i++;
+                        break;
+
+                    case 10:
+                        state = (c == 'n' ? 12 : 0);
+                        i++;
+                        break;
+                    case 12:
+                        state = (c == 'd' ? 14 : 0);
+                        i++;
+                        break;
+                    case 14:
+                        state = (c == 'w' ? 16 : 0);
+                        i++;
+                        break;
+                    case 16:
+                        state = (c == 'i' ? 18 : 0);
+                        i++;
+                        break;
+                    case 18:
+                        state = (c == 't' ? 20 : 0);
+                        i++;
+                        break;
+                    case 20:
+                        state = (c == 'h' ? 22 : 0);
+                        i++;
+                        break;
+                }
+            }
+
+            if (state != 22) return false;
+            LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            return true;
+
         }
 
         // Srap

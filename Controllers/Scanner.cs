@@ -65,7 +65,7 @@ namespace CompilerProject3.Controllers
                 MatchCondition();
                 //MatchBreak();
                 MatchLoop();
-                //MatchReturn();
+                MatchReturn();
                 //MatchStruct();
                 MatchSwitch();
                 //MatchInclusion();
