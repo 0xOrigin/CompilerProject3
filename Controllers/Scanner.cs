@@ -68,7 +68,7 @@ namespace CompilerProject3.Controllers
                 MatchReturn();
                 MatchStruct();
                 MatchSwitch();
-                //MatchInclusion();
+                MatchInclusion();
 
                 // Symbols
                 MatchArithmeticOperation();

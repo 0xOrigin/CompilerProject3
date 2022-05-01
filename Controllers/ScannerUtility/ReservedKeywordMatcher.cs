@@ -320,7 +320,51 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // Require
         public bool MatchInclusion(string sourceOfCode, int lineNum, string lexeme)
         {
-            throw new System.NotImplementedException();
+            if (lexeme.Length == 0) return false;
+
+            int state = 1, i = 0;
+            char c;
+            while (state != 14 && state != 0)
+            {
+                c = lexeme[i];
+                switch (state)
+                {
+                    case 1:
+                        state = (c == 'R' ? 2 : 0);
+                        i++;
+                        break;
+                    case 2:
+                        state = (c == 'e' ? 4 : 0);
+                        i++;
+                        break;
+                    case 4:
+                        state = (c == 'q' ? 6 : 0);
+                        i++;
+                        break;
+                    case 6:
+                        state = (c == 'u' ? 8 : 0);
+                        i++;
+                        break;
+                    case 8:
+                        state = (c == 'i' ? 10 : 0);
+                        i++;
+                        break;
+                    case 10:
+                        state = (c == 'r' ? 12 : 0);
+                        i++;
+                        break;
+                    case 12:
+                        state = (c == 'e' ? 14 : 0);
+                        i++;
+                        break;
+
+                }
+            }
+
+            if (state != 14) return false;
+            LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            return true;
         }
     }
 }
