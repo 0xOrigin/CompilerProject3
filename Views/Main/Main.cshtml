@@ -130,12 +130,14 @@
                 ]
             }, $('#lined'));
 
+
             document.addEventListener('mousemove', function(ev){
                 document.getElementById('autocomplete-menu').style.transform = 'translateY('+(ev.clientY+5)+'px)';
                 document.getElementById('autocomplete-menu').style.transform += 'translateX('+(ev.clientX-245)+'px)';            
             },false);
 
-            $("#scannerButton").on('click', function() {
+
+            $("#scannerButton, #parserButton").on('click', function() {
 
                 var sourceOfCode = "Editor";
                 var code = $('#lined').val() + "_";
@@ -145,24 +147,23 @@
                     code = getFileContent() + "_";
                 }
 
-                $.post("/Main/Scan", {'sourceOfCode': sourceOfCode, 'code':  code});
-               
-                window.open("/Result/Index");
-            });
-
-            $("#parserButton").on('click', function() {
-
-                var sourceOfCode = "Editor";
-                var code = $('#lined').val() + "_";
-
-                if (IsFileLoaded()) {
-                    sourceOfCode = getFileName();
-                    code = getFileContent() + "_";
-                }
-
-                $.post("/Main/Parse", {'sourceOfCode': sourceOfCode, 'code':  code});
-               
-                window.open("/Result/Index");
+                $.ajax({
+                    url: "/Main/" + ($(this).attr("id") === "scannerButton" ? "Scan" : "Parse"),
+                    type: 'POST',
+                    async: true,
+                    cache: false,
+                    dataType: "text", 
+                    data: {'sourceOfCode': sourceOfCode, 'code':  code},
+                    success: function(result){
+                        var w = window.open('about:blank');
+                        w.document.open();
+                        w.document.write(result);
+                        w.document.close();
+                    },
+                    error: function(xhr){
+                        alert("An error occurred: " + xhr.status + " " + xhr.statusText);
+                    }
+                });
             });
         </script>
     </body>

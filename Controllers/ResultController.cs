@@ -11,19 +11,22 @@ namespace CompilerProject3.Controllers
     {
         public IActionResult Index()
         {
-            System.Threading.Thread.Sleep(600);
             return View(new CompilerResults());
         }
 
-        public void Scan(string sourceOfCode, string code)
+        public IActionResult Scan(string sourceOfCode, string code)
         {
             new Scanner(sourceOfCode, code).Scan();
+
+            return RedirectToAction("Index");
         }
 
-        public void Parse(string sourceOfCode, string code)
+        public IActionResult Parse(string sourceOfCode, string code)
         {
             new Scanner(sourceOfCode, code).Scan();
             new Parser().Parse();
+
+            return RedirectToAction("Index");
         }
     }
 }
