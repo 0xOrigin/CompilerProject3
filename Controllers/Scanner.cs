@@ -53,9 +53,9 @@ namespace CompilerProject3.Controllers
                 //MatchInteger();
                 //MatchSInteger();
                 //MatchCharacter();
-                //MatchString();
-                //MatchFloat();
-                //MatchSFloat();
+                MatchString();
+                MatchFloat();
+                MatchSFloat();
                 //MatchVoid();
                 //MatchBoolean();
 
