@@ -28,12 +28,11 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // Sequence
         public bool MatchString(string sourceOfCode, int lineNum, string lexeme)
         {
-
-            if (lexeme.Length == 0) return false;
+            if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
-            while (state != 0 && state != 9)
+            while (state != 16 && state != 0)
             {
                 c = lexeme[i];
                 switch (state)
@@ -43,37 +42,37 @@ namespace CompilerProject3.Controllers.ScannerUtility
                         i++;
                         break;
                     case 2:
-                        state = (c == 'e' ? 3 : 0);
-                        i++;
-                        break;
-                    case 3:
-                        state = (c == 'q' ? 4 : 0);
+                        state = (c == 'e' ? 4 : 0);
                         i++;
                         break;
                     case 4:
-                        state = (c == 'u' ? 5 : 0);
-                        i++;
-                        break;
-                    case 5:
-                        state = (c == 'e' ? 6 : 0);
+                        state = (c == 'q' ? 6 : 0);
                         i++;
                         break;
                     case 6:
-                        state = (c == 'n' ? 7 : 0);
-                        i++;
-                        break;
-                    case 7:
-                        state = (c == 'c' ? 8 : 0);
+                        state = (c == 'u' ? 8 : 0);
                         i++;
                         break;
                     case 8:
-                        state = (c == 'e' ? 9 : 0);
+                        state = (c == 'e' ? 10 : 0);
+                        i++;
+                        break;
+                    case 10:
+                        state = (c == 'n' ? 12 : 0);
+                        i++;
+                        break;
+                    case 12:
+                        state = (c == 'c' ? 14 : 0);
+                        i++;
+                        break;
+                    case 14:
+                        state = (c == 'e' ? 16 : 0);
                         i++;
                         break;
                 }
             }
 
-            if (state != 9) return false;
+            if (state != 16) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
                 //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched);
@@ -87,11 +86,11 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // Ipokf
         public bool MatchFloat(string sourceOfCode, int lineNum, string lexeme)
         {
-            if (lexeme.Length == 0) return false;
+            if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
-            while (state != 0 && state != 6)
+            while (state != 10 && state != 0)
             {
                 c = lexeme[i];
                 switch (state)
@@ -101,24 +100,25 @@ namespace CompilerProject3.Controllers.ScannerUtility
                         i++;
                         break;
                     case 2:
-                        state = (c == 'p' ? 3 : 0);
-                        i++;
-                        break;
-                    case 3:
-                        state = (c == 'o' ? 4 : 0);
+                        state = (c == 'p' ? 4 : 0);
                         i++;
                         break;
                     case 4:
-                        state = (c == 'k' ? 5 : 0);
+                        state = (c == 'o' ? 6 : 0);
                         i++;
                         break;
-                    case 5:
-                        state = (c == 'f' ? 6 : 0);
+                    case 6:
+                        state = (c == 'k' ? 8 : 0);
+                        i++;
+                        break;
+                    case 8:
+                        state = (c == 'f' ? 10 : 0);
                         i++;
                         break;
                 }
             }
-            if (state != 6) return false;
+            
+            if (state != 10) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
                 //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched);
@@ -132,11 +132,11 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // Sipokf
         public bool MatchSFloat(string sourceOfCode, int lineNum, string lexeme)
         {
-            if (lexeme.Length == 0) return false;
+            if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
-            while (state != 0 && state != 7)
+            while (state != 12 && state != 0)
             {
                 c = lexeme[i];
                 switch (state)
@@ -146,28 +146,29 @@ namespace CompilerProject3.Controllers.ScannerUtility
                         i++;
                         break;
                     case 2:
-                        state = (c == 'i' ? 3 : 0);
-                        i++;
-                        break;
-                    case 3:
-                        state = (c == 'p' ? 4 : 0);
+                        state = (c == 'i' ? 4 : 0);
                         i++;
                         break;
                     case 4:
-                        state = (c == 'o' ? 5 : 0);
-                        i++;
-                        break;
-                    case 5:
-                        state = (c == 'k' ? 6 : 0);
+                        state = (c == 'p' ? 6 : 0);
                         i++;
                         break;
                     case 6:
-                        state = (c == 'f' ? 7 : 0);
+                        state = (c == 'o' ? 8 : 0);
+                        i++;
+                        break;
+                    case 8:
+                        state = (c == 'k' ? 10 : 0);
+                        i++;
+                        break;
+                    case 10:
+                        state = (c == 'f' ? 12 : 0);
                         i++;
                         break;
                 }
             }
-            if (state != 7) return false;
+            
+            if (state != 12) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
                 //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched);
