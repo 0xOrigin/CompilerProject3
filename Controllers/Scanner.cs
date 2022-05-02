@@ -101,12 +101,7 @@ namespace CompilerProject3.Controllers
 
             while (!IsTokenDelimiter && !IsLineDelimiter)
             {
-                if (iterator + 1 >= lengthOfCode)
-                {
-                    IsEndOfCode = true;
-                    break;
-                }
-
+                
                 IsTokenDelimiter = symbolMatcher.MatchTokenDelimiter(sourceOfCode, lineNumber,
                     GetSlice(code, iterator, iterator + GetMaxLengthOf(TokenDelimiter)));
                 IsLineDelimiter = symbolMatcher.MatchLineDelimiter(sourceOfCode, lineNumber,
@@ -114,6 +109,12 @@ namespace CompilerProject3.Controllers
 
                 if (!IsTokenDelimiter && !IsLineDelimiter)
                     iterator++;
+
+                if (iterator >= lengthOfCode)
+                {
+                    IsEndOfCode = true;
+                    break;
+                }
             }
 
             lengthToNearestDelimiter = iterator - current_i;
@@ -199,7 +200,7 @@ namespace CompilerProject3.Controllers
         private void MatchInteger()
         {
             bool IsMatch = dataTypeMatcher.MatchInteger(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(Integer)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -209,7 +210,7 @@ namespace CompilerProject3.Controllers
         private void MatchSInteger()
         {
             bool IsMatch = dataTypeMatcher.MatchSInteger(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(SInteger)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -219,7 +220,7 @@ namespace CompilerProject3.Controllers
         private void MatchCharacter()
         {
             bool IsMatch = dataTypeMatcher.MatchCharacter(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(Character)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -229,7 +230,7 @@ namespace CompilerProject3.Controllers
         private void MatchString()
         {
             bool IsMatch = dataTypeMatcher.MatchString(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(Keyword.String)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -239,7 +240,7 @@ namespace CompilerProject3.Controllers
         private void MatchFloat()
         {
             bool IsMatch = dataTypeMatcher.MatchFloat(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(Float)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -249,7 +250,7 @@ namespace CompilerProject3.Controllers
         private void MatchSFloat()
         {
             bool IsMatch = dataTypeMatcher.MatchSFloat(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(SFloat)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -259,7 +260,7 @@ namespace CompilerProject3.Controllers
         private void MatchVoid()
         {
             bool IsMatch = dataTypeMatcher.MatchVoid(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(Keyword.Void)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -269,7 +270,7 @@ namespace CompilerProject3.Controllers
         private void MatchBoolean()
         {
             bool IsMatch = dataTypeMatcher.MatchBoolean(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(Keyword.Boolean)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -279,7 +280,7 @@ namespace CompilerProject3.Controllers
         private void MatchClass()
         {
             bool IsMatch = reservedKeywordMatcher.MatchClass(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(Class)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -289,7 +290,7 @@ namespace CompilerProject3.Controllers
         private void MatchInheritance()
         {
             bool IsMatch = reservedKeywordMatcher.MatchInheritance(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(Inheritance)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -299,7 +300,7 @@ namespace CompilerProject3.Controllers
         private void MatchCondition()
         {
             bool IsMatch = reservedKeywordMatcher.MatchCondition(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(Condition)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
             
             if (!IsMatch) return;
 
@@ -309,7 +310,7 @@ namespace CompilerProject3.Controllers
         private void MatchBreak()
         {
             bool IsMatch = reservedKeywordMatcher.MatchBreak(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(Break)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -319,7 +320,7 @@ namespace CompilerProject3.Controllers
         private void MatchLoop()
         {
             bool IsMatch = reservedKeywordMatcher.MatchLoop(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(Loop)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -329,7 +330,7 @@ namespace CompilerProject3.Controllers
         private void MatchReturn()
         {
             bool IsMatch = reservedKeywordMatcher.MatchReturn(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(Return)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -339,7 +340,7 @@ namespace CompilerProject3.Controllers
         private void MatchStruct()
         {
             bool IsMatch = reservedKeywordMatcher.MatchStruct(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(Struct)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -349,7 +350,7 @@ namespace CompilerProject3.Controllers
         private void MatchSwitch()
         {
             bool IsMatch = reservedKeywordMatcher.MatchSwitch(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(Switch)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -359,7 +360,7 @@ namespace CompilerProject3.Controllers
         private void MatchInclusion()
         {
             bool IsMatch = reservedKeywordMatcher.MatchInclusion(sourceOfCode, lineNumber,
-                GetSlice(code, i, i + GetMaxLengthOf(Inclusion)));
+                GetSlice(code, i, i + LengthToTheNearestDelimiter(i)));
 
             if (!IsMatch) return;
 
@@ -435,7 +436,7 @@ namespace CompilerProject3.Controllers
 
             Increment(LenOfLastMatchedKeyword);
         }
-
+        
         private void MatchIdentifier()
         {
             bool IsMatch = symbolMatcher.MatchIdentifier(sourceOfCode, lineNumber,

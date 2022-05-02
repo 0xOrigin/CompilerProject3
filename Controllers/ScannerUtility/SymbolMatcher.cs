@@ -11,7 +11,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // @|^
         public bool MatchStartSymbol(string sourceOfCode, int lineNum, string lexeme)
         {
-            if (lexeme.Length == 0) return false;
+            if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
@@ -36,7 +36,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // $|#
         public bool MatchEndSymbol(string sourceOfCode, int lineNum, string lexeme)
         {
-            if (lexeme.Length == 0) return false;
+            if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
@@ -61,7 +61,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // +|-|*|/
         public bool MatchArithmeticOperation(string sourceOfCode, int lineNum, string lexeme)
         {
-            if (lexeme.Length == 0) return false;
+            if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
@@ -90,7 +90,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // &&,||,~
         public bool MatchLogicOperators(string sourceOfCode, int lineNum, string lexeme)
         {
-            if (lexeme.Length == 0) return false;
+            if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
@@ -128,7 +128,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // ==|<|>|!=|<=|>=
         public bool MatchRelationalOperators(string sourceOfCode, int lineNum, string lexeme)
         {
-            if (lexeme.Length == 0) return false;
+            if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
@@ -181,7 +181,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // ->
         public bool MatchAccessOperator(string sourceOfCode, int lineNum, string lexeme)
         {
-            if (lexeme.Length == 0) return false;
+            if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
@@ -211,7 +211,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // {|}|[|]
         public bool MatchBraces(string sourceOfCode, int lineNum, string lexeme)
         {
-            if (lexeme.Length == 0) return false;
+            if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
@@ -240,7 +240,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // "|'
         public bool MatchQuotationMark(string sourceOfCode, int lineNum, string lexeme)
         {
-            if (lexeme.Length == 0) return false;
+            if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
@@ -266,7 +266,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // ***
         public bool MatchSingleLineComment(string sourceOfCode, int lineNum, string lexeme)
         {
-            if (lexeme.Length == 0) return false;
+            if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
@@ -299,7 +299,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // </
         public bool MatchCommentStart(string sourceOfCode, int lineNum, string lexeme)
         {
-            if (lexeme.Length == 0) return false;
+            if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
@@ -328,7 +328,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // />
         public bool MatchCommentEnd(string sourceOfCode, int lineNum, string lexeme)
         {
-            if (lexeme.Length == 0) return false;
+            if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
@@ -357,7 +357,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // ;|\n
         public bool MatchLineDelimiter(string sourceOfCode, int lineNum, string lexeme)
         {
-            if(lexeme.Length == 0) return false;
+            if(LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
@@ -375,14 +375,14 @@ namespace CompilerProject3.Controllers.ScannerUtility
 
             if (state != 2) return false;
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
-            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            //result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
             return true;
         }
 
         // \t| 
         public bool MatchTokenDelimiter(string sourceOfCode, int lineNum, string lexeme)
         {
-            if (lexeme.Length == 0) return false;
+            if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
             char c;
@@ -400,7 +400,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
 
             if (state != 2) return false;
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
-            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            //result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
             return true;
         }
 
