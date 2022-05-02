@@ -50,9 +50,9 @@ namespace CompilerProject3.Controllers
                 MatchCommentStart();
 
                 // Datatypes
-                //MatchInteger();
-                //MatchSInteger();
-                //MatchCharacter();
+                MatchInteger();
+                MatchSInteger();
+                MatchCharacter();
                 MatchString();
                 MatchFloat();
                 MatchSFloat();
