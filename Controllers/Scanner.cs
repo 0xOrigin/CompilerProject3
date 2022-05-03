@@ -56,8 +56,8 @@ namespace CompilerProject3.Controllers
                 MatchString();
                 MatchFloat();
                 MatchSFloat();
-                //MatchVoid();
-                //MatchBoolean();
+                MatchVoid();
+                MatchBoolean();
 
                 // ReservedKeywords
                 MatchClass();
@@ -75,7 +75,7 @@ namespace CompilerProject3.Controllers
                 MatchArithmeticOperation();
                 MatchLogicOperators();
                 MatchRelationalOperators();
-                //MatchAssignmentOperator();
+                MatchAssignmentOperator();
                 MatchBraces();
                 MatchQuotationMark();
 
