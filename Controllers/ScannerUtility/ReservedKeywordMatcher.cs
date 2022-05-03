@@ -6,10 +6,10 @@ namespace CompilerProject3.Controllers.ScannerUtility
 {
     public class ReservedKeywordMatcher : IReservedKeywordMatcher
     {
-        private ScannerResult result = ScannerResult.GetInstance();
+        private readonly ScannerResult result = ScannerResult.GetInstance();
         
         // Type
-        public bool MatchClass(string sourceOfCode, int lineNum, string lexeme)
+        public bool MatchClass(string sourceOfCode, int lineNum, string lexeme, bool saveResult)
         {
             if (LengthOfKeyword(lexeme) == 0) return false;
 
@@ -42,16 +42,16 @@ namespace CompilerProject3.Controllers.ScannerUtility
             if (state != 8) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
-                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched);
+                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
                 return false;
             }
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
-            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched, saveResult);
             return true;
         }
 
         // Infer
-        public bool MatchInheritance(string sourceOfCode, int lineNum, string lexeme)
+        public bool MatchInheritance(string sourceOfCode, int lineNum, string lexeme, bool saveResult)
         {
             if (LengthOfKeyword(lexeme) == 0) return false;
 
@@ -88,16 +88,16 @@ namespace CompilerProject3.Controllers.ScannerUtility
             if (state != 10) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
-                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched);
+                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
                 return false;
             }
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
-            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched, saveResult);
             return true;
         }
 
         // If|Else
-        public bool MatchCondition(string sourceOfCode, int lineNum, string lexeme)
+        public bool MatchCondition(string sourceOfCode, int lineNum, string lexeme, bool saveResult)
         {
             if (LengthOfKeyword(lexeme) == 0) return false;
 
@@ -134,18 +134,18 @@ namespace CompilerProject3.Controllers.ScannerUtility
             if (state != 4 && state != 12) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
-                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched);
+                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
                 return false;
             }
             if (state == 4)
                 lexeme = lexeme.Substring(0, 2);
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
-            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched, saveResult);
             return true;
         }
 
         // Endthis
-        public bool MatchBreak(string sourceOfCode, int lineNum, string lexeme)
+        public bool MatchBreak(string sourceOfCode, int lineNum, string lexeme, bool saveResult)
         {
             if (LengthOfKeyword(lexeme) == 0) return false;
 
@@ -190,16 +190,16 @@ namespace CompilerProject3.Controllers.ScannerUtility
             if (state != 14) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
-                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched);
+                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
                 return false;
             }
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
-            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched, saveResult);
             return true;
         }
 
         // However|When
-        public bool MatchLoop(string sourceOfCode, int lineNum, string lexeme)
+        public bool MatchLoop(string sourceOfCode, int lineNum, string lexeme, bool saveResult)
         {
             if (LengthOfKeyword(lexeme) == 0) return false;
 
@@ -256,18 +256,18 @@ namespace CompilerProject3.Controllers.ScannerUtility
             if (state != 8 && state != 22) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
-                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched);
+                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
                 return false;
             }
             if (state == 8)
                 lexeme = lexeme.Substring(0, 4);
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
-            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched, saveResult);
             return true;
         }
 
         // Respondwith
-        public bool MatchReturn(string sourceOfCode, int lineNum, string lexeme)
+        public bool MatchReturn(string sourceOfCode, int lineNum, string lexeme, bool saveResult)
         {
             if (LengthOfKeyword(lexeme) == 0) return false;
 
@@ -328,16 +328,16 @@ namespace CompilerProject3.Controllers.ScannerUtility
             if (state != 22) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
-                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched);
+                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
                 return false;
             }
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
-            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched, saveResult);
             return true;
         }
 
         // Srap
-        public bool MatchStruct(string sourceOfCode, int lineNum, string lexeme)
+        public bool MatchStruct(string sourceOfCode, int lineNum, string lexeme, bool saveResult)
         {
             if (LengthOfKeyword(lexeme) == 0) return false;
 
@@ -370,16 +370,16 @@ namespace CompilerProject3.Controllers.ScannerUtility
             if (state != 8) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
-                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched);
+                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
                 return false;
             }
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
-            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched, saveResult);
             return true;
         }
 
         // Scan|Conditionof
-        public bool MatchSwitch(string sourceOfCode, int lineNum, string lexeme)
+        public bool MatchSwitch(string sourceOfCode, int lineNum, string lexeme, bool saveResult)
         {
             if (LengthOfKeyword(lexeme) == 0) return false;
 
@@ -452,18 +452,18 @@ namespace CompilerProject3.Controllers.ScannerUtility
             if (state != 22 && state != 30) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
-                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched);
+                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
                 return false;
             }
             if (state == 30)
                 lexeme = lexeme.Substring(0, 4);
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
-            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched, saveResult);
             return true;
         }
 
         // Require
-        public bool MatchInclusion(string sourceOfCode, int lineNum, string lexeme)
+        public bool MatchInclusion(string sourceOfCode, int lineNum, string lexeme, bool saveResult)
         {
             if (LengthOfKeyword(lexeme) == 0) return false;
 
@@ -508,11 +508,11 @@ namespace CompilerProject3.Controllers.ScannerUtility
             if (state != 14) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
-                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched);
+                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
                 return false;
             }
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
-            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched, saveResult);
             return true;
         }
     }

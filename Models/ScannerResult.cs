@@ -21,8 +21,10 @@ namespace CompilerProject3.Models
         }
 
 
-        public void AddToken(string sourceOfCode, int lineNum, string tokenText, string tokenType, string state)
+        public void AddToken(string sourceOfCode, int lineNum, string tokenText, string tokenType, string state, bool saveResult)
         {
+            if(!saveResult) return;
+
             Result.Add(new List<string> { sourceOfCode, lineNum.ToString(), tokenText, tokenType, state });
         }
 
