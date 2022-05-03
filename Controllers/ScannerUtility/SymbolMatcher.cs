@@ -185,17 +185,15 @@ namespace CompilerProject3.Controllers.ScannerUtility
                 switch (state)
                 {
                     case 1:
-                        if (c == '=') state = 2;
-                        else state = 0;
+                        state = (c == '=' ? 2 : 0);
                         i++;
                         break;
-                    
                 }
             }
 
             if (state != 2) return false;
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
-            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched, saveResult);
             return true;
         }
 
@@ -212,8 +210,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
                 switch (state)
                 {
                     case 1:
-                        if (c == '-') state = 2;
-                        else state = 0;
+                        state = (c == '-' ? 2 : 0)
                         i++;
                         break;
                     case 2:
