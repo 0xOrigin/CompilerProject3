@@ -233,11 +233,11 @@ namespace CompilerProject3.Controllers.ScannerUtility
             if (state != 18) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
-                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched);
+                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
                 return false;
             }
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
-            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched, saveResult);
             return true;
         }
 
@@ -285,18 +285,17 @@ namespace CompilerProject3.Controllers.ScannerUtility
                         state = (c == 'l' ? 16 : 0);
                         i++;
                         break;
-                    
                 }
             }
 
             if (state != 16) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
-                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched);
+                //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
                 return false;
             }
             LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
-            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched);
+            result.AddToken(sourceOfCode, lineNum, lexeme, GetReturnToken(lexeme), Matched, saveResult);
             return true;
         }
     }
