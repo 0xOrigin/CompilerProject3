@@ -39,7 +39,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
                 }
             }
 
-            if (state != 8) return false;
+            if (state == 0) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
                 //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
@@ -85,7 +85,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
                 }
             }
 
-            if (state != 10) return false;
+            if (state == 0) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
                 //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
@@ -131,7 +131,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
                 }
             }
             
-            if (state != 4 && state != 12) return false;
+            if (state == 0) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
                 //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
@@ -187,7 +187,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
                 }
             }
 
-            if (state != 14) return false;
+            if (state == 0) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
                 //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
@@ -253,7 +253,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
                 }
             }
 
-            if (state != 8 && state != 22) return false;
+            if (state == 0) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
                 //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
@@ -325,7 +325,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
                 }
             }
 
-            if (state != 22) return false;
+            if (state == 0) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
                 //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
@@ -367,7 +367,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
                 }
             }
 
-            if (state != 8) return false;
+            if (state == 0) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
                 //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
@@ -449,7 +449,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
                 }
             }
 
-            if (state != 22 && state != 30) return false;
+            if (state == 0) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
                 //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
@@ -505,7 +505,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
                 }
             }
 
-            if (state != 14) return false;
+            if (state == 0) return false;
             if (LengthOfKeyword(lexeme) > i)
             {
                 //result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);

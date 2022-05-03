@@ -93,8 +93,6 @@ namespace CompilerProject3.Controllers
 
         private int LengthToTheNearestDelimiter(int iterator)
         {
-            bool IsTokenDelimiter = false;
-            bool IsLineDelimiter = false;
             bool MatchDelimiter = false;
             bool IsEndOfCode = false;
             int current_i = iterator;
@@ -102,9 +100,9 @@ namespace CompilerProject3.Controllers
 
             while (!MatchDelimiter)
             {
-                IsTokenDelimiter = symbolMatcher.MatchTokenDelimiter(sourceOfCode, lineNumber,
+                bool IsTokenDelimiter = symbolMatcher.MatchTokenDelimiter(sourceOfCode, lineNumber,
                     GetSlice(code, iterator, iterator + GetMaxLengthOf(TokenDelimiter)), false);
-                IsLineDelimiter = symbolMatcher.MatchLineDelimiter(sourceOfCode, lineNumber,
+                bool IsLineDelimiter = symbolMatcher.MatchLineDelimiter(sourceOfCode, lineNumber,
                     GetSlice(code, iterator, iterator + GetMaxLengthOf(LineDelimiter)), false);
 
                 MatchDelimiter = IsTokenDelimiter || IsLineDelimiter;

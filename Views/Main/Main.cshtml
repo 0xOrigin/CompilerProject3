@@ -155,10 +155,10 @@
                     dataType: "text", 
                     data: {'sourceOfCode': sourceOfCode, 'code':  code},
                     success: function(result){
-                        var w = window.open('about:blank');
-                        w.document.open();
+                        var w = window.open('/Result/Index', '_blank');
+                        /*w.document.open();
                         w.document.write(result);
-                        w.document.close();
+                        w.document.close();*/
                     },
                     error: function(xhr){
                         alert("An error occurred: " + xhr.status + " " + xhr.statusText);

@@ -93,6 +93,8 @@ namespace CompilerProject3.Models
             {"}", Braces},
             {"[", Braces},
             {"]", Braces},
+            {"(", Braces},
+            {")", Braces},
             {"\"", QuotationMark},
             {"'", QuotationMark},
             {"Require", Inclusion},
