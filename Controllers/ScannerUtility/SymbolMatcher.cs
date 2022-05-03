@@ -210,7 +210,7 @@ namespace CompilerProject3.Controllers.ScannerUtility
                 switch (state)
                 {
                     case 1:
-                        state = (c == '-' ? 2 : 0)
+                        state = (c == '-' ? 2 : 0);
                         i++;
                         break;
                     case 2:
