@@ -427,7 +427,38 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // [a-zA-Z_]+[a-zA-Z_0-9]*
         public bool MatchIdentifier(string sourceOfCode, int lineNum, string lexeme, bool saveResult)
         {
-            throw new System.NotImplementedException();
+            if (LengthOfKeyword(lexeme) == 0) return false;
+
+            int state = 1, i = 0;
+            int c;
+            while (i < LengthOfKeyword(lexeme) && state != 0)
+            {
+                c = (int)lexeme[i];
+                switch (state)
+                {
+                    case 1:
+                        state = ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || c == 95) ? 2 : 0;
+                        i++;
+                        break;
+                    case 2:
+                        state = ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || c == 95 || (c >= 48 && c <= 57)) ? 2 : 0;
+                        i++;
+                        break;
+
+                }
+            }
+
+            if (state == 0)
+            {
+                LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
+                result.AddToken(sourceOfCode, lineNum, lexeme, "", NotMatched, saveResult);
+            }
+            else
+            {
+                LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
+                result.AddToken(sourceOfCode, lineNum, lexeme, Identifier, Matched, saveResult);
+            }
+            return true;
         }
 
         // [0-9]+

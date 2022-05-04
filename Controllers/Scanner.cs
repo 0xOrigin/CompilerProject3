@@ -79,8 +79,8 @@ namespace CompilerProject3.Controllers
                 MatchBraces();
                 MatchQuotationMark();
 
-                //MatchIdentifier();
                 MatchConstant();
+                MatchIdentifier();
 
                 MatchEndSymbol();
                 MatchTokenDelimiter();
