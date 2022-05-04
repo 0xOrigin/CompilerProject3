@@ -21,9 +21,9 @@ namespace CompilerProject3.Models
         }
 
 
-        public void AddLine(int lineNum, string status, string ruleUsed)
+        public void AddLine(string sourceOfCode, int lineNum, string status, string ruleUsed)
         {
-            Result.Add(new List<string> { lineNum.ToString(), status, ruleUsed });
+            Result.Add(new List<string> { sourceOfCode, lineNum.ToString(), status, ruleUsed });
         }
 
         public List<List<string>> GetResultsList()

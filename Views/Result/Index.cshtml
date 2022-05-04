@@ -7,74 +7,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="~/css/results.css" type="text/css" rel="stylesheet"/>
     <title>Results</title>
-    <style>
-        body {
-            background-color: lightgray;
-        }
-
-        h1 {
-            background-color: black;
-            color: floralwhite;
-            border-radius: 6px;
-            padding: 10px 20px;
-            margin: 15px 5px;
-        }
-
-        h3 {
-            background-color: black;
-            color: floralwhite;
-            border-radius: 6px;
-            padding: 10px 0px;
-            margin: 15px 5px;
-        }
-
-        hr {
-            height: 2px;
-            border-width: 0;
-            color: gray;
-            background-color: gray;
-            margin: 30px 0px;
-        }
-
-        .no-results {
-            text-align: center;
-            font-size: 35px;
-            font-family: 'arial';
-            background-color: black;
-            color: floralwhite;
-            border-radius: 6px;
-            padding: 35px 20px;
-            margin: 15px 5px;
-        }
-
-        .result {
-            line-height: 23px;
-            padding-left: 20px;
-        }
-
-        .lables {
-            margin: 0px 15px;
-            padding: 2px;
-            font-size: 16px;
-            font-family: 'arial';
-        }
-
-        .values {
-            margin: 0px 15px;
-            padding: 2px;
-            font-size: 16px;
-            font-family: 'arial';
-        }
-
-        .matched {
-            background-color: aquamarine;
-        }
-
-        .not-matched {
-            background-color: #ff4949;
-        }
-    </style>
 </head>
 <body>
 
@@ -84,36 +19,46 @@
 
     int NumOfErrors = 0;
 
-    foreach (List<string> list in Model.ScannerResult.GetResultsList())
-    {
-        if (list[4] == Matched)
-        {
-            <div class="result">
-                <span class="lables">Source of code:</span>
-                <span class="values matched">@list[0]</span> 
-                <span class="lables">Line number:</span>
-                <span class="values matched">@list[1]</span>
-                <span class="lables">Token text:</span>
-                <span class="values matched">@list[2].Replace("\n", "\\n").Replace("\t", "\\t")</span>
-                <span class="lables">Token type:</span>
-                <span class="values matched">@list[3]</span>
-            </div>
-        } else {
+    <table class="table table-striped table-hover">
+        <tbody>
 
-            NumOfErrors++;
-            <div class="result">
-                <span class="lables">Source of code:</span>
-                <span class="values not-matched">@list[0]</span> 
-                <span class="lables">Line number:</span>
-                <span class="values not-matched">@list[1]</span>
-                <span class="lables">Error in Token text:</span>
-                <span class="values not-matched">@list[2].Replace("\n", "\\n").Replace("\t", "\\t")</span>
-            </div>
+        @foreach (List<string> list in Model.ScannerResult.GetResultsList())
+        {
+            if (list[4] == Matched)
+            {
+                <tr>
+                    <td class="lables">Source of code:</td>
+                    <td class="values matched">@list[0]</td>
+                    <td class="lables">Line number:</td>
+                    <td class="values matched">@list[1]</td>
+                    <td class="lables">Token text:</td>
+                    <td class="values matched">@list[2].Replace("\n", "\\n").Replace("\t", "\\t")</td>
+                    <td class="lables">Token type:</td>
+                    <td class="values matched">@list[3]</td>
+                </tr>
+
+            }
+            else
+            {
+
+                NumOfErrors++;
+
+                <tr>
+                    <td class="lables">Source of code:</td>
+                    <td class="values not-matched">@list[0]</td>
+                    <td class="lables">Line number:</td>
+                    <td class="values not-matched">@list[1]</td>
+                    <td class="lables">Error in Token text:</td>
+                    <td class="values not-matched">@list[2].Replace("\n", "\\n").Replace("\t", "\\t")</td>
+                </tr>
+            }
         }
-    }
-    <h3>
+
+        </tbody>
+    </table>
+    <h3 class="end-of-result">
         <span class="lables">Total number of errors:</span>
-        <span class="lables">@NumOfErrors</span>.
+        <span class="lables error-counter">@NumOfErrors</span>.
     </h3>
 }
 else
@@ -132,32 +77,41 @@ else
 
     int NumOfErrors = 0;
 
-    foreach (List<string> list in Model.ParserResult.GetResultsList())
-    {
-        if (list[2] == Matched)
-        {
-            <div class="result">
-                <span class="lables">Line number:</span>
-                <span class="values matched">@list[0]</span>
-                <span class="values matched">@list[1]</span>
-                <span class="lables">Rule used:</span>
-                <span class="values matched">@list[2]</span>
-            </div>
-        } else {
+    <table class="table table-striped table-hover">
+        <tbody>
 
-            NumOfErrors++;
-            <div class="result">
-                <span class="lables">Line number:</span>
-                <span class="values not-matched">@list[0]</span>
-                <span class="values not-matched">@list[1]</span>
-                <span class="lables">Rule used:</span>
-                <span class="values not-matched">@list[2]</span>
-            </div>
-        }
-    }
-    <h3>
+            @foreach (List<string> list in Model.ParserResult.GetResultsList())
+            {
+                if (list[2] == Matched)
+                {
+                    <tr>
+                        <td class="lables">Source of code:</td>
+                        <td class="values matched">@list[0]</td>
+                        <td class="lables">Line number:</td>
+                        <td class="values matched">@list[1]</td>
+                        <td class="values matched">@list[2]</td>
+                        <td class="lables">Rule used:</td>
+                        <td class="values matched">@list[3]</td>
+                    </tr>
+
+                } else {
+
+                    NumOfErrors++;
+                    <tr>
+                        <td class="lables">Source of code:</td>
+                        <td class="values not-matched">@list[0]</td>
+                        <td class="lables">Line number:</td>
+                        <td class="values not-matched">@list[1]</td>
+                        <td class="values not-matched">@list[2]</td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+    <h3 class="end-of-result">
         <span class="lables">Total number of errors:</span>
-        <span class="lables">@NumOfErrors</span>.
+        <span class="lables error-counter">@NumOfErrors</span>.
     </h3>
 }
 

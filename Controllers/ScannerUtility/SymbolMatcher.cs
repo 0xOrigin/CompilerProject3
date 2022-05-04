@@ -430,10 +430,10 @@ namespace CompilerProject3.Controllers.ScannerUtility
             if (LengthOfKeyword(lexeme) == 0) return false;
 
             int state = 1, i = 0;
-            int c;
+            char c;
             while (i < LengthOfKeyword(lexeme) && state != 0)
             {
-                c = (int)lexeme[i];
+                c = lexeme[i];
                 switch (state)
                 {
                     case 1:

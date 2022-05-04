@@ -1,0 +1,83 @@
+﻿body {
+    background-color: azure;
+}
+
+h1 {
+    background-color: black;
+    color: floralwhite;
+    border-radius: 6px;
+    padding: 10px 20px;
+    margin: 15px 5px;
+}
+
+h3 {
+    background-color: black;
+    color: floralwhite;
+    border-radius: 6px;
+    padding: 10px 0px;
+    margin: 15px 5px;
+}
+
+hr {
+    height: 2px;
+    border-width: 0;
+    color: gray;
+    background-color: gray;
+    margin: 30px 0px;
+}
+
+.no-results {
+    text-align: center;
+    font-size: 35px;
+    font-family: 'arial';
+    background-color: black;
+    color: floralwhite;
+    border-radius: 6px;
+    padding: 35px 20px;
+    margin: 15px 5px;
+}
+
+.result {
+    line-height: 23px;
+    padding-left: 20px;
+}
+
+.lables {
+    margin: 0px 15px;
+    padding: 2px;
+    font-size: 16px;
+    font-family: 'arial';
+    width: 150px;
+    text-align: center;
+}
+
+.values {
+    margin: 0px 15px;
+    padding: 2px;
+    font-size: 16px;
+    font-family: 'arial';
+    text-align: center;
+}
+
+.matched {
+    background-color: aquamarine !important;
+}
+
+.not-matched {
+    background-color: #ff4949 !important;
+}
+
+.table {
+    width: 80%;
+    margin: auto;
+}
+
+.end-of-result {
+    font-weight: bold;
+    line-height: unset;
+}
+
+.error-counter {
+    font-weight: bold;
+    text-decoration: underline;
+}
