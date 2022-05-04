@@ -433,7 +433,30 @@ namespace CompilerProject3.Controllers.ScannerUtility
         // [0-9]+
         public bool MatchConstant(string sourceOfCode, int lineNum, string lexeme, bool saveResult)
         {
-            throw new System.NotImplementedException();
+            if (LengthOfKeyword(lexeme) == 0) return false;
+
+            int state = 1, i = 0;
+            char c;
+            while (i < LengthOfKeyword(lexeme) && state != 0)
+            {
+                c = lexeme[i];
+                switch (state)
+                {
+                    case 1:
+                        state = (c >= '0' && c <= '9' ? 2 : 0);
+                        i++;
+                        break;
+                    case 2:
+                        state = (c >= '0' && c <= '9' ? 2 : 0);
+                        i++;
+                        break;
+                }
+            }
+
+            if (state == 0) return false;
+            LenOfLastMatchedKeyword = LengthOfKeyword(lexeme);
+            result.AddToken(sourceOfCode, lineNum, lexeme, Constant, Matched, saveResult);
+            return true;
         }
     }
 }
