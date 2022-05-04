@@ -437,14 +437,13 @@ namespace CompilerProject3.Controllers.ScannerUtility
                 switch (state)
                 {
                     case 1:
-                        state = ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || c == 95) ? 2 : 0;
+                        state = ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_') ? 2 : 0;
                         i++;
                         break;
                     case 2:
-                        state = ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || c == 95 || (c >= 48 && c <= 57)) ? 2 : 0;
+                        state = ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_' || (c >= '0' && c <= '9')) ? 2 : 0;
                         i++;
                         break;
-
                 }
             }
 
