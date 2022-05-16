@@ -54,6 +54,20 @@ namespace CompilerProject3.Controllers.ScannerUtility
             // Console.WriteLine("Empty string.");
             return false;
         }
+        public static string RemoveChar(string str, char toRemove)
+        {
+            string strCopy = "";
 
+            foreach (char c in str)
+            {
+                if (c != toRemove)
+                {
+                    strCopy = strCopy + c;
+                }
+            }
+
+            return strCopy;
+
+        }
     }
 }
